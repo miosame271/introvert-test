@@ -1,6 +1,6 @@
-import { HttpClient, HttpEvent, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { catchError, Observable, of, switchMap } from 'rxjs';
 import { Film } from '../interfaces/film';
 import { FilterFields } from '../interfaces/filter-fields';
 import { API_URL } from '../providers/providers';
