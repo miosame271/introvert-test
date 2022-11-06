@@ -1,0 +1,20 @@
+<div class="searchContainer">
+<ng-container *ngIf="(loading$ | async) === false; else loadingText">
+    <ng-container *ngIf="filteredList$ | async as list">
+            <ng-container *ngIf="list.length; else emptyText">
+                <p *ngFor="let film of list; trackBy: trackByFilmId">
+                    {{ film.title }} ({{ film.year }}), rating {{ film.imDbRating }}
+                </p>
+            </ng-container>
+            <button type="button" (click)="goBack()">Go back</button>
+    </ng-container>
+</ng-container>
+</div>
+
+<ng-template #loadingText>
+    <div>Result is not yet loaded</div>
+</ng-template>
+
+<ng-template #emptyText>
+    <div>Not found :(</div>
+</ng-template>

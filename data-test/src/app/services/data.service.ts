@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
-import { catchError, Observable, of, switchMap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { catchError, Observable, of, shareReplay, switchMap, take } from 'rxjs';
 import { Film } from '../interfaces/film';
 import { FilterFields } from '../interfaces/filter-fields';
 import { ErrorHandlingService } from './error-handling.service';
@@ -9,7 +9,10 @@ import { ErrorHandlingService } from './error-handling.service';
   providedIn: 'root',
 })
 export class DataService {
-  private readonly apiUrl: string = 'https://imdb-api.com/API/';
+  top250$: Observable<Film[]> = this.getTop250().pipe(
+    take(1),
+    shareReplay(1)
+  );
 
   constructor(
     private httpClient: HttpClient,
@@ -18,7 +21,7 @@ export class DataService {
   }
 
   getTop250(): Observable<Film[]> {
-    return this.performRequest(`${this.apiUrl}Top250Movies/`).pipe(
+    return this.performRequest('Top250Movies/').pipe(
       switchMap((data: any) => {
         if (data.errorMessage) {
           throw new Error(data.errorMessage);
@@ -32,7 +35,7 @@ export class DataService {
   searchData(filters: FilterFields): Observable<Film[]> {
     const params = this.createParamsFromFilters(filters);
 
-    return this.performRequest(`${this.apiUrl}AdvancedSearch/`, params).pipe(
+    return this.performRequest('AdvancedSearch/', params).pipe(
       switchMap((data: any) => {
         if (data.errorMessage) {
           throw new Error(data.errorMessage);
@@ -43,12 +46,16 @@ export class DataService {
     )
   }
 
+  private performRequest(url: string, params?: HttpParams): Observable<HttpResponse<any>> {
+    return this.httpClient.get<any>(url, { params });
+  }
+
   private formatFilmList(list: any): Film[] {
     return list.map((film: any) => {
       return {
         id: film['id'] || '',
         title: film['title'] || '',
-        year: film['description'] || '',
+        year: film['year'] || '--',
         imDbRating: film['imDbRating'] || ''
       }
     });
@@ -61,10 +68,6 @@ export class DataService {
     params = params.append('year', filters.year || '');
 
     return params;
-  }
-
-  private performRequest(url: string, params?: HttpParams): Observable<HttpResponse<any>> {
-    return this.httpClient.get<any>(url, { params });
   }
 }
 

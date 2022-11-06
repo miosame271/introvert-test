@@ -4,20 +4,19 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FilterResultComponent } from './components/filter-result/filter-result.component';
-import { FilterSearchComponent } from './components/filter-search/filter-search.component';
 import { DataService } from './services/data.service';
 import { ErrorHandlingService } from './services/error-handling.service';
 import { InterceptorService } from './http-interceptors/interceptor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchService } from './services/search.service';
-import { FormService } from './services/form.service';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { SearchResultComponent } from './components/search-result/search-result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilterSearchComponent,
-    FilterResultComponent
+    SearchFormComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +33,6 @@ import { FormService } from './services/form.service';
     },
     DataService,
     SearchService,
-    FormService,
     ErrorHandlingService
   ],
   bootstrap: [AppComponent]
