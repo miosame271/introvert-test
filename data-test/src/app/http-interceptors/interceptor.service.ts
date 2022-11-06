@@ -1,15 +1,10 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
-import { API_KEY } from '../providers/providers';
-import { ErrorHandlingService } from '../services/error-handling.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class InterceptorService implements HttpInterceptor {
-  constructor(
-    @Inject(API_KEY) private apiKey: string,
-    private errorHandlingService: ErrorHandlingService
-  ) { }
+  private readonly apiKey: string = 'k_2t7dp9bq';
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const newRequest = req.clone({
@@ -17,9 +12,7 @@ export class InterceptorService implements HttpInterceptor {
       params: req.params
     });
 
-    return next.handle(newRequest).pipe(
-      catchError(err => this.errorHandlingService.handleError<HttpEvent<any>>(err))
-    )
+    return next.handle(newRequest);
   }
 
 }

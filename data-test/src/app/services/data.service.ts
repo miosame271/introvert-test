@@ -3,15 +3,15 @@ import { Inject, Injectable } from '@angular/core';
 import { catchError, Observable, of, switchMap } from 'rxjs';
 import { Film } from '../interfaces/film';
 import { FilterFields } from '../interfaces/filter-fields';
-import { API_URL } from '../providers/providers';
 import { ErrorHandlingService } from './error-handling.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
+  private readonly apiUrl: string = 'https://imdb-api.com/API/';
+
   constructor(
-    @Inject(API_URL) private apiUrl: string,
     private httpClient: HttpClient,
     private errorHandlingService: ErrorHandlingService
   ) {

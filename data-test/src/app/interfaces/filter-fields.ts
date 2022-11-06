@@ -1,4 +1,4 @@
 export interface FilterFields {
     title: string;
-    year: string;
+    year: number | null;
 }

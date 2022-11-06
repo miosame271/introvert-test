@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FormService } from 'src/app/services/form.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-filter-search',
   templateUrl: './filter-search.component.html',
-  styleUrls: ['./filter-search.component.css']
+  styleUrls: ['./filter-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilterSearchComponent implements OnInit {
+export class FilterSearchComponent {
+  searchForm: FormGroup = this.formService.searchForm;
 
-  constructor() { }
+  constructor(private formService: FormService, private searchService: SearchService) { }
 
-  ngOnInit() {
+  onSubmit() {
+    this.searchService.search(this.searchForm.value);
+    debugger
   }
 
 }
