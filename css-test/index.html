@@ -8,22 +8,22 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
     <div class="flex-contaiter">
         <div class="flex-grid">
-            <div class="flex-column-md-3 flex-column-xs-1">
+            <div class="flex-column-md-3 flex-column-xs-6">
                 <h2>Успейте оформить подписку со скидкой</h2>
             </div>
         </div>
 
         <section class="flex-grid cards-list">
-            <div class="flex-column-md-2 flex-column-xs-1">
+            <div class="flex-column-md-2 flex-column-xs-6">
                 <article class="single-card">
-                    <div class="duration">1 месяц</div>
+                    <div class="duration visible-md">1 месяц</div>
                     <h3>Для тех, кто пробует</h3>
                     <div class="price-block">
                         <b class="price current">299</b>
@@ -31,18 +31,22 @@
                     </div>
                     <div class="payment-period">в месяц</div>
                     <button type="button" class="checkout-button">
-                        <span class="text hidden-xs">Начать 7 дней бесплатно</span>
-                        <span class="icon hidden-sm"></span>
+                        <span class="text visible-md">Начать 7 дней бесплатно</span>
+                        <span class="icon visible-xs">
+                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.5 1.5L6.50036 6.50036L1.5 11.5007" stroke="#202020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </button>
                     <div class="checkout-condition">
-                        Ежемесячная оплата
+                        <span class="text">Ежемесячная оплата</span>
                     </div>
                 </article>
             </div>
 
-            <div class="flex-column-md-2 flex-column-xs-1">
+            <div class="flex-column-md-2 flex-column-xs-6">
                 <article class="single-card saturated">
-                    <div class="duration">1 год</div>
+                    <div class="duration visible-md">1 год</div>
                     <h3>Для тех, кто настроен серьезно</h3>
                     <div class="price-block">
                         <b class="price current">249</b>
@@ -50,18 +54,23 @@
                     </div>
                     <div class="payment-period">в месяц</div>
                     <button type="button" class="checkout-button">
-                        <span class="text hidden-xs">Купить подписку</span>
-                        <span class="icon hidden-sm"></span>
+                        <span class="text visible-md">Купить подписку</span>
+                        <span class="icon visible-xs">
+                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.5 1.5L6.50036 6.50036L1.5 11.5007" stroke="#202020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </button>
-                    <div class="checkout-condition" data-discount="50%">
-                        При оплате 2990 за год
+                    <div class="checkout-condition">
+                        <span class="discount visible-xs">-50%</span>
+                        <span class="text">При оплате 2990 за год</span>
                     </div>
                 </article>
             </div>
 
-            <div class="flex-column-md-2 flex-column-xs-1">
+            <div class="flex-column-md-2 flex-column-xs-6">
                 <article class="single-card">
-                    <div class="duration">50 лет</div>
+                    <div class="duration visible-md">50 лет</div>
                     <h3>Для тех, кто ищет максимальную выгоду</h3>
                     <div class="price-block">
                         <b class="price current">41</b>
@@ -69,11 +78,16 @@
                     </div>
                     <div class="payment-period">в месяц</div>
                     <button type="button" class="checkout-button">
-                        <span class="text hidden-xs">Купить подписку</span>
-                        <span class="icon hidden-sm"></span>
+                        <span class="text visible-md">Купить подписку</span>
+                        <span class="icon visible-xs">
+                            <svg width="8" height="13" viewBox="0 0 8 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.5 1.5L6.50036 6.50036L1.5 11.5007" stroke="#202020" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
                     </button>
-                    <div class="checkout-condition" data-discount="92%">
-                        При оплате 24 990 ₽ навсегда
+                    <div class="checkout-condition">
+                        <span class="discount visible-xs">-92%</span>
+                        <span class="text">При оплате 24 990 ₽ навсегда</span>
                     </div>
                 </article>
             </div>

@@ -1,11 +1,4 @@
 @charset "UTF-8";
-html {
-  color: #202020;
-  font-family: "Montserrat", Arial, sans-serif;
-  font-size: 18px;
-  font-weight: 300;
-}
-
 body {
   padding: 140px;
 }
@@ -39,20 +32,29 @@ h3 {
   align-items: top;
 }
 
-.flex-column {
+.flex-column-md-2 {
   display: flex;
   flex-grow: 0;
   flex-shrink: 0;
-}
-.flex-column-md-2 {
   flex-basis: 33.33%;
   min-width: 33.33%;
   max-width: 33.33%;
 }
 .flex-column-md-3 {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
   flex-basis: 50%;
   min-width: 50%;
   max-width: 50%;
+}
+.flex-column-md-6 {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 100%;
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .cards-list {
@@ -61,11 +63,13 @@ h3 {
 }
 
 .single-card {
+  width: 100%;
   background-color: #FFF1AA;
   border-radius: 15px;
   box-shadow: 0px 0px 15px 0px rgba(104, 128, 155, 0.15);
   padding: 40px;
   margin: 0 10px;
+  position: relative;
 }
 .single-card.saturated {
   background-color: #FFDB3C;
@@ -74,7 +78,7 @@ h3 {
 
 .price-block {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .price {
@@ -126,4 +130,125 @@ h3 {
   font-size: 14px;
   line-height: 20px;
   text-align: center;
+}
+
+.visible-md {
+  display: initial;
+}
+
+.visible-xs {
+  display: none;
+}
+
+html {
+  color: #202020;
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+}
+@media screen and (max-width: 1366px) {
+  html {
+    font-size: 14px;
+  }
+  html body {
+    max-width: 480px;
+    padding: 68px 16px;
+    margin: 0 auto;
+  }
+  html h2 {
+    font-size: 24px;
+    margin: 0 0 40px;
+    padding-right: 40px;
+  }
+  html h3 {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 15px;
+    min-height: 0;
+    padding-right: 70px;
+  }
+  html .flex-grid {
+    flex-direction: column;
+  }
+  html .flex-column-xs-6 {
+    display: flex;
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+  html .flex-column-xs-3 {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
+    min-width: 50%;
+    max-width: 50%;
+  }
+  html .cards-list {
+    padding: 0;
+    margin: 0;
+  }
+  html .single-card {
+    background-color: #FFF1AA;
+    padding: 20px;
+    margin: 0 0 20px;
+  }
+  html .price.current {
+    font-size: 32px;
+  }
+  html .price.old {
+    font-size: 14px;
+    top: -3px;
+  }
+  html .payment-period {
+    color: #555;
+    font-size: 14px;
+    margin-top: 7px;
+  }
+  html .checkout-button {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+    border-radius: 50%;
+    position: absolute;
+    right: 20px;
+    bottom: 50px;
+  }
+  html .checkout-button svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+  html .checkout-condition {
+    font-size: 10px;
+    line-height: 14px;
+    font-weight: 60px;
+    text-align: left;
+  }
+  html .checkout-condition .text {
+    display: inline-block;
+    padding: 0 5px;
+    margin: 15px 0 0;
+    border: 1px solid #555;
+    border-radius: 7px;
+  }
+  html .checkout-condition .discount {
+    display: inline-block;
+    background-color: #fff;
+    margin-right: 5px;
+    padding: 1px 5px;
+    border-radius: 8px;
+  }
+  html .visible-md {
+    display: none;
+  }
+  html .visible-xs {
+    display: initial;
+  }
 }/*# sourceMappingURL=styles.css.map */

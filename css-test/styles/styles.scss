@@ -3,13 +3,6 @@ $secondary-color: #555;
 $card-color: #FFF1AA;
 $card-color-saturated: #FFDB3C;
 
-html {
-    color: $primary-color;
-    font-family: 'Montserrat', Arial, sans-serif;
-    font-size: 18px;
-    font-weight: 300;
-}
-
 body {
     padding: 140px;
 }
@@ -44,20 +37,31 @@ h3 {
 }
 
 .flex-column {
-    display: flex;
-    flex-grow: 0;
-    flex-shrink: 0;
-
     &-md-2 {
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
         flex-basis: 33.33%;
         min-width: 33.33%;
         max-width: 33.33%;
     }
 
     &-md-3 {
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
         flex-basis: 50%;
         min-width: 50%;  
         max-width: 50%;
+    }
+
+    &-md-6 {
+        display: flex;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 100%;
+        min-width: 100%;  
+        max-width: 100%;
     }
 }
 
@@ -67,11 +71,13 @@ h3 {
 }
 
 .single-card {
+    width: 100%;
     background-color: $card-color;
     border-radius: 15px;
     box-shadow: 0px 0px 15px 0px transparentize($color: #68809B, $amount: 0.85);
     padding: 40px;
     margin: 0 10px;
+    position: relative;
 
     &.saturated {
         background-color: $card-color-saturated;
@@ -81,7 +87,7 @@ h3 {
 
 .price-block {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
 }
 
 .price {
@@ -136,4 +142,146 @@ h3 {
     font-size: 14px;
     line-height: 20px;
     text-align: center;
+}
+
+.visible-md {
+    display: initial;
+}
+
+.visible-xs {
+   display: none;
+}
+
+html {
+    color: $primary-color;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+
+    @media screen and (max-width: 1366px) {
+        font-size: 14px;
+    
+        body {
+            max-width: 480px;
+            padding: 68px 16px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            font-size: 24px;
+            margin: 0 0 40px;
+            padding-right: 40px;
+        }
+        
+        h3 {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0 0 15px;
+            min-height: 0;
+            padding-right: 70px;
+        }
+
+        .flex-grid {
+            flex-direction: column;
+        }
+
+        .flex-column {
+            &-xs-6 {
+                display: flex;
+                flex-grow: 1;
+                flex-shrink: 0;
+                flex-basis: 100%;
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            &-xs-3 {
+                display: flex;
+                flex-grow: 0;
+                flex-shrink: 0;
+                flex-basis: 50%;
+                min-width: 50%;  
+                max-width: 50%;
+            }
+        }
+
+        .cards-list {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .single-card {
+            background-color: $card-color;
+            padding: 20px;
+            margin: 0 0 20px;
+        }
+
+        .price {
+            &.current {
+                font-size: 32px;
+            }
+        
+            &.old {
+                font-size: 14px;
+                top: -3px;
+            }
+        }
+        
+        .payment-period {
+            color: $secondary-color;
+            font-size: 14px;
+            margin-top: 7px;
+        }
+
+        .checkout-button {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin: 0;
+            border-radius: 50%;
+            position: absolute;    
+            right: 20px;
+            bottom: 50px;
+
+            svg {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+        
+        .checkout-condition {
+            font-size: 10px;
+            line-height: 14px;
+            font-weight: 60px;
+            text-align: left;
+
+            .text {
+                display: inline-block;
+                padding: 0 5px;
+                margin: 15px 0 0;
+                border: 1px solid $secondary-color;
+                border-radius: 7px;
+            }
+
+            .discount {
+                display: inline-block;
+                background-color: #fff;
+                margin-right: 5px;
+                padding: 1px 5px;
+                border-radius: 8px;
+            }
+        }
+
+        .visible-md {
+            display: none;
+        }
+        
+        .visible-xs {
+            display: initial;
+        }
+    }
 }
