@@ -1,0 +1,16 @@
+.search-container {
+  padding: 20px;
+}
+.search-container form {
+  margin-bottom: 30px;
+}
+.search-container p {
+  margin-bottom: 10px;
+}
+.search-container button {
+  margin-top: 10px;
+}
+.search-container label {
+  display: inline-block;
+  margin-right: 5px;
+}/*# sourceMappingURL=styles.css.map */
