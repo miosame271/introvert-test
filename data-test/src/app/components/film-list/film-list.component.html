@@ -1,0 +1,15 @@
+<search-form></search-form>
+
+<div>
+  <ng-container *ngIf="(loading$ | async) === false; else loadingText">
+    <ng-container *ngIf="top250$ | async as list">
+      <p *ngFor="let film of list; trackBy: trackByFilmId">
+          {{ film.title }} ({{ film.year }}), rating {{ film.imDbRating }}
+      </p>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #loadingText>
+  <div>Result is not yet loaded</div>
+</ng-template>

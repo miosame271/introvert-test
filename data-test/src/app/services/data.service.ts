@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, of, shareReplay, switchMap, take } from 'rxjs';
+import { formatFilmList } from '../helpers/helpers';
 import { Film } from '../interfaces/film';
-import { FilterFields } from '../interfaces/filter-fields';
 import { ErrorHandlingService } from './error-handling.service';
 
 @Injectable({
@@ -20,54 +20,16 @@ export class DataService {
   ) {
   }
 
-  getTop250(): Observable<Film[]> {
-    return this.performRequest('Top250Movies/').pipe(
+  private getTop250(): Observable<Film[]> {
+    return this.httpClient.get<any>('Top250Movies/').pipe(
       switchMap((data: any) => {
         if (data.errorMessage) {
           throw new Error(data.errorMessage);
         }
-        return of(this.formatFilmList(data.items))
+        return of(formatFilmList(data.items))
       }),
       catchError(err => this.errorHandlingService.handleError<Film[]>(err, []))
     )
-  }
-
-  searchData(filters: FilterFields): Observable<Film[]> {
-    const params = this.createParamsFromFilters(filters);
-
-    return this.performRequest('AdvancedSearch/', params).pipe(
-      switchMap((data: any) => {
-        if (data.errorMessage) {
-          throw new Error(data.errorMessage);
-        }
-        return of(this.formatFilmList(data.results || []))
-      }),
-      catchError(err => this.errorHandlingService.handleError<Film[]>(err, []))
-    )
-  }
-
-  private performRequest(url: string, params?: HttpParams): Observable<HttpResponse<any>> {
-    return this.httpClient.get<any>(url, { params });
-  }
-
-  private formatFilmList(list: any): Film[] {
-    return list.map((film: any) => {
-      return {
-        id: film['id'] || '',
-        title: film['title'] || '',
-        year: film['year'] || '--',
-        imDbRating: film['imDbRating'] || ''
-      }
-    });
-  }
-
-  private createParamsFromFilters(filters: FilterFields): HttpParams {
-    let params = new HttpParams();
-
-    params = params.append('title', filters.title || '');
-    params = params.append('year', filters.year || '');
-
-    return params;
   }
 }
 

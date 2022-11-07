@@ -8,13 +8,14 @@ import { DataService } from './services/data.service';
 import { ErrorHandlingService } from './services/error-handling.service';
 import { InterceptorService } from './http-interceptors/interceptor.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SearchService } from './services/search.service';
 import { SearchFormComponent } from './components/search-form/search-form.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
+import { FilmListComponent } from './components/film-list/film-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilmListComponent,
     SearchFormComponent,
     SearchResultComponent
   ],
@@ -32,7 +33,6 @@ import { SearchResultComponent } from './components/search-result/search-result.
       multi: true
     },
     DataService,
-    SearchService,
     ErrorHandlingService
   ],
   bootstrap: [AppComponent]

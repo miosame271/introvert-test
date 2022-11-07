@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject, combineLatest, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable, of, take, tap } from 'rxjs';
+import { trackByFilmId } from 'src/app/helpers/helpers';
 import { Film } from 'src/app/interfaces/film';
 import { FilterFields } from 'src/app/interfaces/filter-fields';
 import { DataService } from 'src/app/services/data.service';
@@ -14,8 +15,9 @@ import { DataService } from 'src/app/services/data.service';
 export class SearchResultComponent implements OnInit {
   top250$: Observable<Film[]> = this.dataService.top250$;
   filteredList$: Observable<Film[]> = of([]);
-
   loading$ = new BehaviorSubject<boolean>(true);
+
+  trackByFilmId = trackByFilmId;
 
   constructor(
     private router: Router,
@@ -24,19 +26,18 @@ export class SearchResultComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.filteredList$ = combineLatest([this.activatedRoute.queryParams, this.top250$]).pipe(
+    this.filteredList$ = combineLatest([
+      this.activatedRoute.queryParams.pipe(take(1)),
+      this.top250$.pipe(take(1))
+    ]).pipe(
       map(([queryParams, films]) => this.filterFilms(queryParams as FilterFields, films))
     )
 
     this.filteredList$.subscribe(() => this.loading$.next(false))
   }
 
-  trackByFilmId(_: any, film: Film): string {
-    return film.id;
-  }
-
   goBack(): void {
-    this.router.navigateByUrl('search-form');
+    this.router.navigateByUrl('film-list');
   }
 
   private filterFilms({ title, year }: FilterFields, films: Film[]): Film[] {

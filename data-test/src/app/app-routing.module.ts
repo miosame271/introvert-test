@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SearchFormComponent } from './components/search-form/search-form.component';
+import { FilmListComponent } from './components/film-list/film-list.component';
 import { SearchResultComponent } from './components/search-result/search-result.component';
 import { SearchResultGuard } from './guards/search-result.guard';
 
 const routes: Routes = [
   {
-    path: 'search-form',
-    component: SearchFormComponent
+    path: 'film-list',
+    component: FilmListComponent
   },
   {
     path: 'search-result',
@@ -16,12 +16,12 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'search-form',
+    redirectTo: 'film-list',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: 'search-form',
+    redirectTo: 'film-list',
     pathMatch: 'full'
   },
 ];

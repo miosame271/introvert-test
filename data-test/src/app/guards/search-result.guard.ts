@@ -8,7 +8,7 @@ export class SearchResultGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
         if (!route.queryParams['title'] && !route.queryParams['year']) {
-            this.router.navigateByUrl('/search-form');
+            this.router.navigateByUrl('film-list');
             return false;
         }
         return true;

@@ -1,11 +1,11 @@
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="title">Title</label>
-      <input id="title" type="text" formControlName="title">
-    </div>
-    <div>
-      <label for="year">Year</label>
-      <input id="year" type="number" formControlName="year">
-    </div>
-    <button class="button" type="submit">Search</button>
-  </form>
+  <p>
+    <label for="title">Title</label>
+    <input id="title" type="text" formControlName="title">
+  </p>
+  <p>
+    <label for="year">Year</label>
+    <input id="year" type="number" formControlName="year">
+  </p>
+  <button class="button" type="submit">Search</button>
+</form>
